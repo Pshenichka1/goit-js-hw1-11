@@ -6,6 +6,7 @@ import "simplelightbox/dist/simple-lightbox.min.css";
 import Notiflix from "notiflix";
 import FetchPixabay from "./fetchPixabay";
 
+const img = document.querySelector('img');
 const searchForm = document.querySelector('#search-form');
 const galleryCotainer = document.querySelector('.gallery');
 const btnLoadMore = document.querySelector('.load-more');
@@ -16,10 +17,11 @@ let totalHits = 0;
 let page = 1;
 const per_page = 40;
 totalHits = page * per_page;
-let lightbox = new SimpleLightbox('.gallery_link a', {
+let lightbox = new SimpleLightbox('.gallery a', {
     captions: true,
     captionsData: 'alt',
     captionsDelay: 300,
+    nav: true,
 });
 
 
@@ -58,8 +60,10 @@ function handleLoadMore() {
     } else if ((totalHits - page * per_page) <= 0) {
         Notiflix.Notify.info("We're sorry, but you've reached the end of search results");
         btnLoadMore.classList.add('is-hidden');
+        return;
     }
     newsApi.fetchPixabayGallery().then(appendHitsMarkup)
+    
     
 }
 
