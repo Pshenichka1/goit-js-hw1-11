@@ -22,6 +22,7 @@ let lightbox = new SimpleLightbox('.gallery a', {
     captionsData: 'alt',
     captionsDelay: 300,
     nav: true,
+    docClose: true,
 });
 
 
